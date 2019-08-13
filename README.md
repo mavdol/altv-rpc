@@ -234,14 +234,23 @@ let view = rpc.createView('myView', 'http://resource/myUrl');
 return a view instance
 
 #### destroyView(name)
+```javascript
+rpc.detroyView('myView');
+```
 destroy view 
 
 #### getView(name)
+```javascript
+let view = rpc.getView('myView');
+```
 return view instance
 
 
 #### getViews()
-return all view instance
+```javascript
+let viewsArray = rpc.getViews();
+```
+return all view instance in an array
 
 
 
