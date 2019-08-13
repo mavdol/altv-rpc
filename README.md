@@ -1,5 +1,5 @@
 # Alt:v - Asynchronous rpc system
-A minimalist rpc system designed for alt:v and inspired by [rage-rpc](https://github.com/micaww/rage-rpc)
+A minimalist rpc system designed for alt:v and inspired by [micaww rage-rpc](https://github.com/micaww/rage-rpc)
 
 **ALt:v rpc need to be included in every resource in which you want to use RPC system!**
 
