@@ -1,6 +1,8 @@
 # Alt:v - Asynchronous rpc system
 A minimalist rpc system designed for alt:v and inspired by [rage-rpc](https://github.com/micaww/rage-rpc)
 
+**ALt:v rpc need to be included in every resource in which you want to use RPC system!**
+
 * [Installation](#installation)
 * [Usage](#usage)
     * [Universal](#universal)
@@ -54,7 +56,7 @@ import rpc from 'yourpath/rpc.mjs';
     </head>
 </html>
 ```
-*ps: browser rpc system requires to instantiate view via [createView(name, url)](#createviewname-url) to use rpc functions.*
+**ps: browser rpc system requires to instantiate view via [createView(name, url)](#createviewname-url) to use rpc functions.**
 
 ## Usage
 ### Universal
