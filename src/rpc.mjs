@@ -4,12 +4,9 @@ class RPC {
 
     constructor() {
         this.env;
-        this.tmpView = [];
-
         // ------- check environnement --------------------
         this.env = alt.Player.local ? 'client' : 'server';
         // -----------------------------------------------
-
         this.loadData(() =>{
             this.responseListener();
         });
