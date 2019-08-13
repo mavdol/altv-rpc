@@ -40,7 +40,7 @@ import rpc from 'yourpath/rpc.mjs';
 ```
 
 ### browser 
-1. Only have to link javascript file "rpc.browser.mjs"
+1. Just have to link javascript file "rpc.browser.mjs"
 ```html
 <html>
     <head>
@@ -54,6 +54,7 @@ import rpc from 'yourpath/rpc.mjs';
     </head>
 </html>
 ```
+ps: browser rpc system requires to instantiate view via [createView(name, url)](#createviewname-url) to use rpc functions.
 
 ## Usage
 ### Universal
