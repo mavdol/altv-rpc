@@ -24,7 +24,7 @@ A minimalist rpc system designed for alt:v and inspired by [rage-rpc](https://gi
 ## Installation
 ### client
 1. Download rpc files
-2. Put "src" folder in your ressource
+2. Put "src" the folder in your ressource
 3. Include folder in resource.cfg file
 4. Finally just import RPC inside the client
 ```javascript
@@ -33,7 +33,7 @@ import rpc from 'yourpath/rpc.mjs';
 
 ### server
 1. Download rpc files
-2. Put "src" folder in your ressource
+2. Put "src" the folder in your ressource
 3. just import RPC inside your serve file
 ```javascript
 import rpc from 'yourpath/rpc.mjs';
@@ -118,6 +118,7 @@ rpc.call('myevent').then((result) => {
 call a procedure register in client context.
 
 ##### parameters
+* `player` Player - the instance of the player who is targeted. 
 * `name` string - The unique identifier, relative to the current context, of the procedure.
 * `args` Optional arguments to pass to the procedure.
 
@@ -129,7 +130,7 @@ rpc.register('myevent', () => '42');
 
 server
 ```javascript
-rpc.callClient('myevent').then((result) => {
+rpc.callClient(player,'myevent').then((result) => {
     console.log(result)
     // result return 42
 }).catch(err => {
@@ -182,7 +183,7 @@ rpc.register('myevent', () => '42');
 client
 ```javascript
 //in server file
-rpc.callClient('myevent').then((result) => {
+rpc.callServer('myevent').then((result) => {
     alt.log(result)
     // result return 42
 }).catch(err => {
@@ -270,7 +271,7 @@ client
 rpc.register('myevent', () => '42');
 ```
 
-server
+browser
 ```javascript
 rpc.callClient('myevent').then((result) => {
     console.log(result)
@@ -294,10 +295,10 @@ server
 rpc.register('myevent', () => '42');
 ```
 
-client
+browser
 ```javascript
 //in server file
-rpc.callClient('myevent').then((result) => {
+rpc.callServer('myevent').then((result) => {
     console.log(result)
     // result return 42
 }).catch(err => {
