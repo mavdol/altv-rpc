@@ -1,8 +1,6 @@
 # Alt:v - Asynchronous rpc system
 A minimalist rpc system designed for alt:v and inspired by [micaww rage-rpc](https://github.com/micaww/rage-rpc)
 
-**ALt:v rpc need to be included in every resource in which you want to use RPC system!**
-
 * [Installation](#installation)
 * [Usage](#usage)
     * [Universal](#universal)
@@ -24,6 +22,8 @@ A minimalist rpc system designed for alt:v and inspired by [micaww rage-rpc](htt
         * [callClient(name, args)](#callclientname-args-1)
 
 ## Installation
+**ALt:v rpc need to be included in every resource in which you want to use RPC system!**
+
 ### client
 1. Download rpc files
 2. Put "src" the folder in your ressource
