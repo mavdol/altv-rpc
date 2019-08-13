@@ -242,13 +242,9 @@ class RPC {
 
     createView(name, url) {
         if(this.env == "client") {
-            if(alt.Player.local.__rpcView.indexOf(name) < 0) {
-                alt.Player.local.__rpcView[name] = new alt.WebView(url);
-                this.listenView(alt.Player.local.__rpcView[name]);
-                return alt.Player.local.__rpcView[name];
-            } else {
-                return alt.Player.local.__rpcView[name];
-            }
+            alt.Player.local.__rpcView[name] = new alt.WebView(url);
+            this.listenView(alt.Player.local.__rpcView[name]);
+            return alt.Player.local.__rpcView[name];
         }
     
     }
@@ -257,7 +253,7 @@ class RPC {
         if(this.env == "client") {
             let view = alt.Player.local.__rpcView[name];
             view.destroy();
-            alt.Player.local.__rpcView.splice(alt.Player.local.__rpcView.indexOf(name),1); 
+            alt.Player.local.__rpcView[name] = undefined; 
         }
     }
 
