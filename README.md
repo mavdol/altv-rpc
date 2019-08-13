@@ -1,5 +1,5 @@
 # Alt:v - Asynchronous rpc system
-A minimalist rpc system designed for altv and inspired by [rage-rpc](https://github.com/micaww/rage-rpc)
+A minimalist rpc system designed for alt:v and inspired by [rage-rpc](https://github.com/micaww/rage-rpc)
 
 * [Installation](#installation)
 * [Usage](#usage)
@@ -54,7 +54,7 @@ import rpc from 'yourpath/rpc.mjs';
     </head>
 </html>
 ```
-ps: browser rpc system requires to instantiate view via [createView(name, url)](#createviewname-url) to use rpc functions.
+*ps: browser rpc system requires to instantiate view via [createView(name, url)](#createviewname-url) to use rpc functions.*
 
 ## Usage
 ### Universal
@@ -156,7 +156,7 @@ rpc.register('myevent', () => '42');
 
 server
 ```javascript
-rpc.callBrowser(player, 'view1', 'myevent').then((result) => {
+rpc.callBrowser(player, 'myview', 'myevent').then((result) => {
     console.log(result)
     // result return 42
 }).catch(err => {
@@ -183,7 +183,7 @@ client
 ```javascript
 //in server file
 rpc.callClient('myevent').then((result) => {
-    console.log(result)
+    alt.log(result)
     // result return 42
 }).catch(err => {
     // if name doesn't exist in server context
@@ -210,7 +210,7 @@ rpc.register('myevent', () => '42');
 client
 ```javascript
 rpc.callBrowser(player, 'view1', 'myevent').then((result) => {
-    console.log(result)
+    alt.log(result)
     // result return 42
 }).catch(err => {
     // if name doesn't exist in client context
