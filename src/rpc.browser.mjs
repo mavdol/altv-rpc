@@ -7,26 +7,26 @@ class RPCBrowser {
     }
 
     loadData(cb) {
-        if(!window.__rpcEvent)
-            window.__rpcEvent = [];
+        if(!window.__rpcListeners)
+            window.__rpcListeners = [];
         if(!window.__rpcPending)
             window.__rpcPending = [];
         cb();
     }
     
-    register(eventName, cb) {
-        window.__rpcEvent[eventName] = cb;
+    register(procedureName, cb) {
+        window.__rpcListeners[procedureName] = cb;
     }
 
-    unregister(eventName) {
-        window.__rpcEvent[eventName] = undefined;
+    unregister(procedureName) {
+        window.__rpcListeners[procedureName] = undefined;
     }
 
-    async call(eventName, params = {}) {
+    async call(procedureName, params = {}) {
         let promiseEvent = new Promise((resolve, reject) => {
             let result;
-            if(window.__rpcEvent[eventName]){
-                let callback = window.__rpcEvent[eventName]
+            if(window.__rpcListeners[procedureName]){
+                let callback = window.__rpcListeners[procedureName]
                 result = callback(params);
             }
             
@@ -36,14 +36,14 @@ class RPCBrowser {
         return await promiseEvent;
     }
 
-    async callServer(eventName, params = {}){
+    async callServer(procedureName, params = {}){
         let promiseEvent = new Promise((resolve, reject) => {
             let uid = this.uuidv4();
             window.__rpcPending["__rpcPending-" + uid] = {
                 resolve: resolve,
                 reject : reject
             };
-            alt.emit("rpc::browser::callServer", {__rpcPendingUid: uid, __rpcEventName: eventName }, params);
+            alt.emit("rpc::browser::callServer", {__rpcPendingUid: uid, __rpcprocedureName: procedureName }, params);
 
             alt.on('rpc::browser::callServerResponse', (info, result) => {
                 let resolver = info.error ? window.__rpcPending["__rpcPending-" + uid].reject : window.__rpcPending["__rpcPending-" + uid].resolve;   
@@ -54,17 +54,17 @@ class RPCBrowser {
         return await promiseEvent;
     }
 
-    async callClient(eventName, params = {}) {
+    async callClient(procedureName, params = {}) {
         let promiseEvent = new Promise((resolve, reject) => {
             let uid = this.uuidv4();
             window.__rpcPending["__rpcPending-" + uid] = {
                 resolve: resolve,
                 reject : reject
             };
-            alt.emit("rpc::browser::callClient", {__rpcPendingUid: uid, __rpcEventName: eventName }, params);
+            alt.emit("rpc::browser::callClient", {__rpcPendingUid: uid, __rpcprocedureName: procedureName }, params);
 
             alt.on('rpc::browser::callClientResponse', (info, result) => {
-                let resolver = info.error ? window.__rpcPending["__rpcPending-" + uid].reject : window.__rpcPending["__rpcPending-" + uid].resolve;   
+                let resolver = info.error ? window.__rpcPending["__rpcPending-" + uid].reject : window.__rpcPending["__rpcPending-" + uid].resolve;
                 return resolver(result);
             })
         });
@@ -76,8 +76,8 @@ class RPCBrowser {
      
         alt.on('rpc::browser::callBrowser', (info, params) => {
             let result;
-            if(window.__rpcEvent[info.__rpcEventName]){
-                let callback = window.__rpcEvent[info.__rpcEventName]
+            if(window.__rpcListeners[info.__rpcprocedureName]){
+                let callback = window.__rpcListeners[info.__rpcprocedureName]
                 result = callback(params);
             } else {
                 info.error = true;
