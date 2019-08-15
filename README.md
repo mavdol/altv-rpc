@@ -70,9 +70,9 @@ Used to register an procedure in the current context that will be call after.
 
 ##### Exemples
 ```javascript
-rpc.register('myevent', () => '42')
+rpc.register('sayhello', () => 'hello')
 ```
-Returns '42' to the caller asynchronously.
+Returns 'hello' to the caller asynchronously.
 
 ---
 
@@ -93,7 +93,7 @@ unregister an procedure in the current context.
 
 ##### Exemples
 ```javascript
-rpc.unregister('myevent')
+rpc.unregister('sayhello')
 ```
 
 #### call(name, callback)
@@ -106,11 +106,11 @@ call a procedure in the current context.
 
 ##### Exemples
 ```javascript
-rpc.register('myevent', () => '42');
+rpc.register('sayhello', () => 'hello');
 
-rpc.call('myevent').then((result) => {
+rpc.call('sayhello').then((result) => {
     console.log(result)
-    // result return 42
+    // result return hello
 })
 ```
 ### Server side
@@ -127,14 +127,14 @@ call a procedure register in client context.
 ##### Exemples
 client
 ```javascript
-rpc.register('myevent', () => '42');
+rpc.register('sayhello', () => 'hello');
 ```
 
 server
 ```javascript
-rpc.callClient(player,'myevent').then((result) => {
+rpc.callClient(player,'sayhello').then((result) => {
     console.log(result)
-    // result return 42
+    // result return hello
 }).catch(err => {
     // if name doesn't exist in client context
     // handle error 
