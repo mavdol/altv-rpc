@@ -22,7 +22,7 @@ A minimalist rpc system designed for alt:V and inspired by [micaww/rage-rpc](htt
         * [callClient(name, args)](#callclientname-args-1)
 
 ## Installation
-**aLt:V rpc need to be included in every resource in which you want to use RPC system!**
+**alt:V rpc need to be included in every resource in which you want to use RPC system!**
 
 ### client
 1. Download rpc files
