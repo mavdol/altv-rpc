@@ -1,5 +1,5 @@
-# alt:V - asynchronous remote procedure call system
-A minimalist rpc system designed for alt:V and inspired by [micaww/rage-rpc](https://github.com/micaww/rage-rpc)
+# alt:V - asynchronous remote procedure call (altv-rpc)
+A minimalist RPC designed for alt:V and inspired by [micaww/rage-rpc](https://github.com/micaww/rage-rpc)
 
 * [Installation](#installation)
 * [Usage](#usage)
@@ -28,7 +28,7 @@ A minimalist rpc system designed for alt:V and inspired by [micaww/rage-rpc](htt
 1. Download rpc files
 2. Put "src" the folder in your ressource
 3. Include folder in resource.cfg file
-4. Finally just import RPC inside the client
+4. Finally import RPC inside the client
 ```javascript
 import rpc from 'yourpath/rpc.mjs';
 ```
@@ -36,7 +36,7 @@ import rpc from 'yourpath/rpc.mjs';
 ### server
 1. Download rpc files
 2. Put "src" the folder in your ressource
-3. just import RPC inside your serve file
+3. Import RPC inside your serve file
 ```javascript
 import rpc from 'yourpath/rpc.mjs';
 ```
