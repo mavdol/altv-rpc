@@ -43,7 +43,8 @@ class RPCBrowser {
                 resolve: resolve,
                 reject : reject
             };
-            alt.emit("rpc::browser::callServer", {__rpcPendingUid: uid, __rpcprocedureName: procedureName }, params);
+
+            alt.emit("rpc::browser::callServer", {__rpcPendingUid: uid, __rpcListenersName: procedureName }, params);
 
             alt.on('rpc::browser::callServerResponse', (info, result) => {
                 let resolver = info.error ? window.__rpcPending["__rpcPending-" + uid].reject : window.__rpcPending["__rpcPending-" + uid].resolve;   
@@ -61,7 +62,7 @@ class RPCBrowser {
                 resolve: resolve,
                 reject : reject
             };
-            alt.emit("rpc::browser::callClient", {__rpcPendingUid: uid, __rpcprocedureName: procedureName }, params);
+            alt.emit("rpc::browser::callClient", {__rpcPendingUid: uid, __rpcListenersName: procedureName }, params);
 
             alt.on('rpc::browser::callClientResponse', (info, result) => {
                 let resolver = info.error ? window.__rpcPending["__rpcPending-" + uid].reject : window.__rpcPending["__rpcPending-" + uid].resolve;
@@ -76,8 +77,8 @@ class RPCBrowser {
      
         alt.on('rpc::browser::callBrowser', (info, params) => {
             let result;
-            if(window.__rpcListeners[info.__rpcprocedureName]){
-                let callback = window.__rpcListeners[info.__rpcprocedureName]
+            if(window.__rpcListeners[info.__rpcListenersName]){
+                let callback = window.__rpcListeners[info.__rpcListenersName]
                 result = callback(params);
             } else {
                 info.error = true;
