@@ -1,4 +1,4 @@
-# alt:v - Asynchronous remote procedure call system
+# alt:v - asynchronous remote procedure call system
 A minimalist rpc system designed for alt:v and inspired by [micaww/rage-rpc](https://github.com/micaww/rage-rpc)
 
 * [Installation](#installation)
