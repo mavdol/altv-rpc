@@ -114,9 +114,9 @@ class RPC {
                 }
                 alt.emitClient(player,"rpc::callClient", {__rpcPendingUid: uid, __rpcListenersName: procedureName}, params);
                 alt.onClient("rpc::callClientResponse", (player, info, result) => {
-                    if(global.__rpcPending["__rpcPending-" + uid]){
+                    if(global.__rpcPending["__rpcPending-" + info.__rpcPendingUid]){
                         let resolver = info.error ? global.__rpcPending["__rpcPending-" + info.__rpcPendingUid].reject : global.__rpcPending["__rpcPending-" + info.__rpcPendingUid].resolve;   
-                        global.__rpcPending["__rpcPending-" + uid] = undefined;
+                        global.__rpcPending["__rpcPending-" + info.__rpcPendingUid] = undefined;
                         return resolver(result);
                     }
                 })
@@ -194,9 +194,9 @@ class RPC {
 
                 alt.emitClient(player,"rpc::server::callBrowser", {__rpcPendingUid: uid, __rpcViewName: viewName, __rpcListenersName: procedureName}, params);
                 alt.onClient("rpc::server::callBrowserResponse", (player, info, result) => {
-                    if(global.__rpcPending["__rpcPending-" + uid]){
+                    if(global.__rpcPending["__rpcPending-" + info.__rpcPendingUid]){
                         let resolver = info.error ? global.__rpcPending["__rpcPending-" + info.__rpcPendingUid].reject : global.__rpcPending["__rpcPending-" + info.__rpcPendingUid].resolve;   
-                        global.__rpcPending["__rpcPending-" + uid] = undefined;
+                        global.__rpcPending["__rpcPending-" + info.__rpcPendingUid] = undefined;
                         return resolver(result);
                     }
                 })
