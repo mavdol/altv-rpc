@@ -47,8 +47,11 @@ class RPCBrowser {
             alt.emit("rpc::browser::callServer", {__rpcPendingUid: uid, __rpcListenersName: procedureName }, params);
 
             alt.on('rpc::browser::callServerResponse', (info, result) => {
-                let resolver = info.error ? window.__rpcPending["__rpcPending-" + uid].reject : window.__rpcPending["__rpcPending-" + uid].resolve;   
-                return resolver(result);
+                if(window.__rpcPending["__rpcPending-" + uid]) {
+                    let resolver = info.error ? window.__rpcPending["__rpcPending-" + uid].reject : window.__rpcPending["__rpcPending-" + uid].resolve;
+                    window.__rpcPending["__rpcPending-" + uid] = undefined;  
+                    return resolver(result);
+                }
             })
         });
 
@@ -65,8 +68,11 @@ class RPCBrowser {
             alt.emit("rpc::browser::callClient", {__rpcPendingUid: uid, __rpcListenersName: procedureName }, params);
 
             alt.on('rpc::browser::callClientResponse', (info, result) => {
-                let resolver = info.error ? window.__rpcPending["__rpcPending-" + uid].reject : window.__rpcPending["__rpcPending-" + uid].resolve;
-                return resolver(result);
+                if(window.__rpcPending["__rpcPending-" + uid]) {
+                    let resolver = info.error ? window.__rpcPending["__rpcPending-" + uid].reject : window.__rpcPending["__rpcPending-" + uid].resolve;
+                    window.__rpcPending["__rpcPending-" + uid] = undefined;  
+                    return resolver(result);
+                }
             })
         });
 
