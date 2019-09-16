@@ -283,8 +283,13 @@ class RPC {
 
     listenView(view) {
         view.on('rpc::browser::callClient', (info, params) => {
-            let callback = alt.Player.local.__rpcListeners[info.__rpcListenersName];
-            let result = callback(params);
+            let result;
+            if(alt.Player.local.__rpcListeners[info.__rpcListenersName]){
+                let callback = alt.Player.local.__rpcListeners[info.__rpcListenersName];
+                result = callback(params);
+            } else {
+                info.error = true;
+            }
             view.emit("rpc::browser::callClientResponse", info, result);
 
         })
