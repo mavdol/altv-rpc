@@ -308,3 +308,13 @@ rpc.callServer('myevent').then((result) => {
     // handle error 
 });
 ```
+##### Changelog
+23/10/2019 : add second argument to register in server that contain player and procedure name
+```javascript
+rpc.register('myprocedure', (args, info) => {
+    console.log(info);
+    // info return { player: Player {}, name: 'myprocedure'}
+});
+
+```
+
