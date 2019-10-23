@@ -213,7 +213,11 @@ class RPC {
                 let result;
                 if(global.__rpcListeners[info.__rpcListenersName]){
                     let callback = global.__rpcListeners[info.__rpcListenersName];
-                    result = callback(params);
+                    let extraInfo = {
+                        player : player,
+                        name : info.__rpcListenersName
+                    }
+                    result = callback(params, extraInfo);
                 } else {
                     info.error = true;
                 }
@@ -283,13 +287,8 @@ class RPC {
 
     listenView(view) {
         view.on('rpc::browser::callClient', (info, params) => {
-            let result;
-            if(alt.Player.local.__rpcListeners[info.__rpcListenersName]){
-                let callback = alt.Player.local.__rpcListeners[info.__rpcListenersName];
-                result = callback(params);
-            } else {
-                info.error = true;
-            }
+            let callback = alt.Player.local.__rpcListeners[info.__rpcListenersName];
+            let result = callback(params);
             view.emit("rpc::browser::callClientResponse", info, result);
 
         })
