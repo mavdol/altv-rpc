@@ -20,6 +20,7 @@ A minimalist RPC designed for alt:V and inspired by [micaww/rage-rpc](https://gi
     * [Browser](#browser-side)
         * [callServer(name, args)](#callclientname-args-1)
         * [callClient(name, args)](#callclientname-args-1)
+    * [Changelog](#changelog)
 
 ## Installation
 **alt:V rpc need to be included in every resource in which you want to use RPC system!**
@@ -308,7 +309,8 @@ rpc.callServer('myevent').then((result) => {
     // handle error 
 });
 ```
-##### Changelog
+
+## Changelog
 23/10/2019 : add second argument to register in server that contain player and procedure name
 ```javascript
 rpc.register('myprocedure', (args, info) => {
