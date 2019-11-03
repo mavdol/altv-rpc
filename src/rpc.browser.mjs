@@ -48,7 +48,7 @@ class RPCBrowser {
 
             alt.on('rpc::browser::callServerResponse', (info, result) => {
                 if(window.__rpcPending["__rpcPending-" + uid]) {
-                    let resolver = info.error ? window.__rpcPending["__rpcPending-" + uid].reject : window.__rpcPending["__rpcPending-" + uid].resolve;
+                    let resolver = info && info.error ? window.__rpcPending["__rpcPending-" + uid].reject : window.__rpcPending["__rpcPending-" + uid].resolve;
                     window.__rpcPending["__rpcPending-" + uid] = undefined;  
                     return resolver(result);
                 }
@@ -69,7 +69,7 @@ class RPCBrowser {
 
             alt.on('rpc::browser::callClientResponse', (info, result) => {
                 if(window.__rpcPending["__rpcPending-" + uid]) {
-                    let resolver = info.error ? window.__rpcPending["__rpcPending-" + uid].reject : window.__rpcPending["__rpcPending-" + uid].resolve;
+                    let resolver = info && info.error ? window.__rpcPending["__rpcPending-" + uid].reject : window.__rpcPending["__rpcPending-" + uid].resolve;
                     window.__rpcPending["__rpcPending-" + uid] = undefined;  
                     return resolver(result);
                 }
