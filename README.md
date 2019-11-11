@@ -1,5 +1,5 @@
 # alt:V - asynchronous remote procedure call (altv-rpc)
-A minimalist RPC designed for alt:V and inspired by [micaww/rage-rpc](https://github.com/micaww/rage-rpc)
+A minimalist RPC designed for alt:V
 
 * [Installation](#installation)
 * [Usage](#usage)
